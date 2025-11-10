@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成就</title>
+<style>
+body {
+    background: rgb(223, 200, 254);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    text-align: center;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 60px;
+    margin-top: 20px;
+}
+
+nav a {
+    font-size: 40px;
+    text-decoration: none;
+    color: #924599;
+    margin: 0 10px;
+}
+
+.toggle-arrow {
+    font-size: 28px;
+    color: #6a2f91;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: transform 0.3s;
+}
+
+.toggle-arrow.active {
+    transform: rotate(180deg);
+}
+
+.works-section {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    display: none; /* 預設隱藏 */
+}
+
+.work {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease-out;
+    margin-bottom: 20px;
+}
+
+.work.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work img {
+    width: 300px;
+    border-radius: 10px;
+}
+</style>
+</head>
+<body>
+
+<h1>成就</h1>
+<nav>
+    <a href="introduce.html">自我介紹</a>
+    <a href="pic.html">作品</a>
+    <a href="index.html">首頁</a>
+    <a href="lest.html">一點影片</a>
+    <a href="another.html">其他</a>
+</nav>
+
+<h2 style="text-align: center; font-size: 35px; color: #4f3775;">一點小成就</h2>
+<div class="toggle-arrow">▼ 展開成就</div>
+
+<section class="works-section">
+    <div class="work">
+        <h3 style="text-align: center; font-size: 35px; color: #4f3775;">高中</h3>
+        <img src="succcce/112.jpg" alt="作品1">
+    </div>
+</section>
+
+<script>
+const toggleArrow = document.querySelector('.toggle-arrow');
+const worksSection = document.querySelector('.works-section');
+const works = document.querySelectorAll('.work');
+
+toggleArrow.addEventListener('click', () => {
+    if (worksSection.style.display === 'block') {
+        worksSection.style.display = 'none';
+        toggleArrow.textContent = '▼ 展開成就';
+        toggleArrow.classList.remove('active');
+        works.forEach(w => w.classList.remove('show'));
+    } else {
+        worksSection.style.display = 'block';
+        toggleArrow.textContent = '▲ 收起成就';
+        toggleArrow.classList.add('active');
+
+        // 延遲淡入效果
+        works.forEach((w, i) => {
+            setTimeout(() => {
+                w.classList.add('show');
+            }, i * 200);
+        });
+    }
+});
+</script>
+
+</body>
+</html>

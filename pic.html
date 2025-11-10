@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>作品</title>
+</head>
+<body style="background: rgb(200, 212, 254);">
+    <h1 style="text-align: center; font-size: 60px; color: #ffffff;">作品</h1>
+<div style="text-align: center;">
+    <a href="introduce.html" style="font-size: 40px;text-decoration: none; color: #935fb3;">自我介紹</a>
+    <a href="index.html" style="font-size: 40px;text-decoration: none; color: #935fb3;">首頁</a>
+    <a href="sucess.html" style="font-size: 40px;text-decoration: none; color: #935fb3;">成就</a>
+    <a href="lest.html" style="font-size: 40px;text-decoration: none; color: #935fb3;">一點影片</a>
+    <a href="another.html" style="font-size: 40px;text-decoration: none; color: #935fb3;">其他</a>
+</div>
+<div class="center-wrapper">
+  <button onclick="showCategory('hands')" class="circle-button">手繪</button>
+  <button onclick="showCategory('csp')" class="circle-button">電繪</button>
+  <button onclick="showCategory('picture')" class="circle-button">照片</button>
+</div>
+
+<div id="image-container"></div>
+
+<div id="lightbox" onclick="this.style.display='none'">
+  <img id="lightbox-img" src="">
+</div>
+
+
+ <script>
+      // 每個分類的圖片清單
+  const categories = {
+    hands: [
+      'images/hands/1.jpg',
+      'images/hands/2.jpg',
+      'images/hands/3.jpg',
+    ],
+    csp: [
+      'images/csp/1.png',
+      'images/csp/2.png',
+      'images/csp/3.png',
+      'images/csp/4.png',
+      'images/csp/5.png'
+    ],
+    picture: [
+      'images/picture/1.jpg',
+      'images/picture/2.jpg',
+      'images/picture/3.jpg',
+      'images/picture/4.jpg',
+      'images/picture/5.jpg'
+    ]
+  };
+  let currentCategory = null;
+
+function showCategory(cat) {
+  if (currentCategory === cat) return;
+
+  const container = document.getElementById('image-container');
+  container.innerHTML = '';
+
+  categories[cat].forEach(src => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('img-wrapper');
+
+    const img = document.createElement('img');
+    img.src = src;
+
+    // 點擊切換完整圖片
+    img.addEventListener('click', () => {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightboxImg.src = src;
+  lightbox.style.display = 'flex';
+});
+
+
+    wrapper.appendChild(img);
+    container.appendChild(wrapper);
+
+    // 淡入效果
+    setTimeout(() => img.classList.add('show'), 50);
+  });
+
+  currentCategory = cat;
+}
+  </script>
+
+</body>
+</html>
+
+

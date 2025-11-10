@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>個人網頁</title>
+  <style>
+    body {
+      background: rgb(177, 236, 213);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 60px;
+      color: #ffffff;
+    }
+
+    /* 導覽列 */
+    .nav {
+      text-align: center;
+    }
+
+    .nav a {
+      font-size: 40px;
+      text-decoration: none;
+      color: #4c9c98;
+      margin: 0 10px;
+    }
+
+    /* 新聞區塊 */
+    .news-header {
+      text-align: center;
+      color: #387c78;
+      font-size: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      gap: 10px;
+    }
+
+    .arrow {
+      font-size: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .arrow.rotate {
+      transform: rotate(90deg);
+    }
+
+    .works-section {
+      max-width: 1000px;
+      margin: 30px auto;
+      display: grid;
+      gap: 30px;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      overflow: hidden;
+    }
+
+    .works-section.hide {
+      max-height: 0;
+      opacity: 0;
+    }
+
+    .work {
+      opacity: 0;
+      transform: translateX(0);
+      transition: all 1s ease-out;
+    }
+
+    .work.left {
+      transform: translateX(-100px);
+    }
+
+    .work.right {
+      transform: translateX(100px);
+    }
+
+    .work.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .img-wrapper {
+      aspect-ratio: 4 / 3;
+      max-height: 600px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgb(177, 236, 213);
+    }
+
+    .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .img-wrapper img:hover {
+      transform: scale(1.05);
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <h1>首頁</h1>
+
+  <div class="nav">
+    <a href="introduce.html">自我介紹</a>
+    <a href="pic.html">作品</a>
+    <a href="sucess.html">成就</a>
+    <a href="lest.html">一點影片</a>
+    <a href="another.html">其他</a>
+  </div>
+
+  <!-- 新聞區 -->
+<h2 class="news-header">
+  新聞
+  <span class="arrow">▶</span>
+</h2>
+
+<!-- 一開始收起來的內容，加入 class="hide" -->
+<section class="works-section hide" id="news-content">
+  <div class="work">
+    <div class="img-wrapper">
+      <img src="received_2402078723583052.jpeg" alt="作品1">
+    </div>
+  </div>
+
+  <section class="works-section">
+    <div class="work">
+      <div class="img-wrapper">
+        <div class="flex-container">
+          <h2 style=" color: #387c78; font-size: 35px;">即時影像</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 即時影像 -->
+  <section class="works-section">
+    <div class="work">
+      <div class="img-wrapper">
+        <div class="flex-container">
+          <video width="960" height="540" controls>
+            <source src="video plus.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+  </section>
+
+
+  <script>
+    // 進場動畫
+    const works = document.querySelectorAll('.work');
+    function showWorksOnScroll() {
+      const triggerBottom = window.innerHeight * 0.85;
+      works.forEach(work => {
+        const top = work.getBoundingClientRect().top;
+        if (top < triggerBottom && top > 0) {
+          work.classList.add('show');
+        } else {
+          work.classList.remove('show');
+        }
+      });
+    }
+    window.addEventListener('scroll', showWorksOnScroll);
+    window.addEventListener('load', showWorksOnScroll);
+
+    // 新聞收合功能
+    const newsHeader = document.querySelector('.news-header');
+    const arrow = document.querySelector('.arrow');
+    const newsContent = document.querySelector('#news-content');
+
+    newsHeader.addEventListener('click', () => {
+      newsContent.classList.toggle('hide');
+      arrow.classList.toggle('rotate');
+    });
+  </script>
+</body>
+</html>

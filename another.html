@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其他</title>
+</head>
+<body style="background: rgb(254, 200, 202);">
+    <style>
+.works-section {
+  max-width: 1000px;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 每排兩張 */
+  gap: 30px; /* 左右與上下間距 */
+}
+
+/* 初始位置與淡入 */
+.work {
+  opacity: 0;
+  transform: translateX(0);
+  transition: all 1s ease-out;
+}
+
+.work.left {
+  transform: translateX(-100px); /* 左邊往左 */
+}
+
+.work.right {
+  transform: translateX(100px); /* 右邊往右 */
+}
+
+.work.show {
+  opacity: 1;
+  transform: translateX(0); /* 回到中間 */
+}
+
+.work img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+}
+
+/* 圖片包裝，固定比例正方形 */
+.img-wrapper {
+  width: 100%;
+  padding-top: 100%; /* 正方形比例 */
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.img-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 保持比例裁切 */
+  transition: transform 0.5s;
+}
+
+/* 滑鼠 hover 可以放大一點點 */
+.img-wrapper img:hover {
+  transform: scale(1.05);
+}
+    .flex-container {
+        display: flex;
+        justify-content: center; /* 水平置中 */
+        align-items: center;    /* 垂直置中（可選） */
+        height: 100vh;          /* 讓容器高度滿版，用於垂直置中 */
+    }
+
+</style>
+    <h1 style="text-align: center; font-size: 60px; color: #ffffff;">其他</h1>
+<div style="text-align: center;">
+    <a href="introduce.html" style="font-size: 40px;text-decoration: none;color: #be7878;">自我介紹</a>
+    <a href="pic.html" style="font-size: 40px;text-decoration: none; color: #be7878;">作品</a>
+    <a href="sucess.html" style="font-size: 40px;text-decoration: none; color: #be7878;">成就</a>
+    <a href="lest.html" style="font-size: 40px;text-decoration: none; color: #be7878;">一點影片</a>
+    <a href="index.html" style="font-size: 40px;text-decoration: none; color: #be7878;">首頁</a>
+</div>
+
+<h2 style="text-align: center; font-size: 35px; color: #c46b6b;">家裡的寵物們</h2>
+
+<section class="works-section">
+  <div class="work left">
+    <div class="img-wrapper">
+    <img src="photo/20250929_215210.jpg" alt="作品1">
+    </div>
+  </div>
+  <div class="work right">
+    <div class="img-wrapper">
+    <img src="photo/20250929_215305.jpg" alt="作品2">
+    </div>
+  </div>
+  <div class="work left">
+    <div class="img-wrapper">
+    <img src="photo/new/20250916_235858.jpg" alt="作品3">
+    </div>
+  </div>
+  <div class="work right">
+    <div class="img-wrapper">
+    <img src="photo/20251014_171121.jpg" alt="作品4">
+    </div>
+  </div>
+  <div class="work left">
+    <div class="img-wrapper">
+    <img src="photo/new/20250909_002156.jpg" alt="作品5">
+    </div>
+  </div>
+  <div class="work right">
+    <div class="img-wrapper">
+    <img src="photo/20251010_093252.jpg" alt="作品6">
+    </div>
+  </div>
+  <div class="work left">
+    <div class="img-wrapper">
+    <img src="photo/20251016_004142.jpg" alt="作品7">
+    </div>
+  </div>
+  <div class="work right">
+    <div class="img-wrapper">
+    <img src="photo/20251004_140031.jpg" alt="作品8">
+    </div>
+  </div>
+</section>
+
+
+<script>
+const works = document.querySelectorAll('.work');
+
+function showWorksOnScroll() {
+  const triggerBottom = window.innerHeight * 0.85;
+  works.forEach(work => {
+    const top = work.getBoundingClientRect().top;
+    if (top < triggerBottom && top > 0) {
+      // 滾動到視窗內
+      work.classList.add('show');
+    } else {
+      // 滾出視窗時移除 class
+      work.classList.remove('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', showWorksOnScroll);
+window.addEventListener('load', showWorksOnScroll);
+
+</script>
+</body>
+</html>
